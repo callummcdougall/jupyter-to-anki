@@ -83,14 +83,14 @@ There are two types of cards: **`front-back`** (standard Anki cards, where you f
   * Normal markdown syntax: use **`*`** or **`1.`** followed by a space
   * Note that the items within a list shouldn't have empty lines between them
 * **Hints**
-  * These go at the end of the card, separated by two dashes: **`--`**
+  * These go at the end of the card, separated by a line **`-h`**
 * **Other standard markdown**: **`**...**`** for bold text, **`*...*`** or **`_..._`** for italics, **``...``** for inline code font
 
 Every one of these features works for both front-back and front card types, even input fields (since you can have front-back cards which _also_ have input fields on the front).
 
 A couple more notes on card syntax:
 * Each line or block of text (e.g. quotebox or bullet points) should be separated from each other by an empty line
-* Make sure not to mix up front/back separator **`-`** and hint separator **`--`**
+* Make sure not to mix up front/back separator **`-`** and hint separator **`-h`**
 
 # Some final notes
 
