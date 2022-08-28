@@ -88,6 +88,7 @@ Each line of text (or feature in the list below, e.g. quotebox / codeblock / set
 * **Bullet points or numbered lists**
   * Normal markdown syntax: use **`*`** or **`1.`** followed by a space
   * Note that the items within a list shouldn't have empty lines between them
+  * Double indentations are not supported yet
 * **Hints**
   * These go at the end of the card, separated by a line **`-h`**
   * Make sure not to mix this up with the front-back separator, which is just a single dash
