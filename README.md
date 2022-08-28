@@ -47,11 +47,11 @@ You can read more about this on my personal website [here](https://www.perfectly
     * Note that you can use as many code cells as you want, and this won't be a problem when you run the function to create cards
 3. You can optionally specify metadata **TAGS** by adding a markdown cell with the single line **`TAGS = ...`** (see the template notebook for an example). The tags in this cell will apply to every cell _below_ it, until you reach a cell which specifies a new tag.
 4. When you're done, press **`Cells -> All Output -> Clear`** in your Jupyter Notebook, save the notebook, then run the function **`read_cards`** in any of the cells. The important arguments to this function (along with their default values) are:
+    * * **`filename=None`**
+        * You should replace this with the name of whichever file you're running this code from (e.g. it was **`"jupyter_to_anki_template"`** in the example above)
     * **`write=True`**
         * If **`True`** then this will write new cards
         * If `False` then this will just print out information like how many of each card type you have (useful for running final checks before you create cards)
-    * **`filename="."`**
-        * This is the file which your cards will be written to (by default this is the same directory as the notebook file)
     * **`num_cells_below=None`**
         * This determines how many markdown cells are written as Anki cards (useful if you've added a few new cards to a notebook which you've already created Anki cards from)
         * if **`None`** (default) then every single markdown cell in the notebook will be converted into an Anki card
@@ -98,5 +98,5 @@ Every one of these features works for both front-back and front card types, even
 # Some final notes
 
 * I'll emphasise it once more - this code is quite brittle, and if you don't conform to the card syntax guide above then it probably won't run! If in doubt, just go back to the template notebook in this repo and compare your cards to this.
-* If you run the **`read_cards`** function multiple times, then multiple text files will be created, with names like `front-01.txt`, `front-02.txt`, etc (so you don't overwrite the cards you've already made). This can get confusing, so it's recommended to only generate codes once for each notebook you're working on!
+* If you run the **`read_cards`** function multiple times, then multiple text files will be created, with names like `front-001.txt`, `front-002.txt`, etc (so you don't overwrite the cards you've already made). This can get confusing, so it's recommended to only generate codes once for each notebook you're working on!
 * Markdown cells which start with headers (i.e. with some number of **`#`** characters) _don't_ get converted into Anki cards. This is because headers are quite useful in notebooks, and I didn't want them to disrupt the function.
