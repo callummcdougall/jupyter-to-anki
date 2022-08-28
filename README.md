@@ -71,7 +71,7 @@ There are two types of cards: **`front-back`** (standard Anki cards, where you f
   * Indenting text turns it into an inline block
 * **Input fields** 
   * Wrap text with **`{{{...}}}`**
-  * Note this doesn't have to be done in a code block (but it works best like this!)
+  * Note this doesn't have to be done in a code block (but ususally I combine these two)
 * **Images**
   * Literally just copy and paste them into markdown cells
   * Make sure each image is on its own line
