@@ -49,7 +49,10 @@ You can read more about this on my personal website [here](https://www.perfectly
 4. When you're done, run the function **`read_cards`** in any of the cells. The important arguments to this function (along with their default values) are:
     * **`write=True`** - if **`True`** then this will write new cards, if `False` then this will just print out information like how many of each card type you have (useful for running final checks before you create cards)
     * **`filename="."`** - this is the file which your cards will be written to (by default this is the same directory as the notebook file)
-    * **`num_cells_below=None`** - if **`None`** then every single markdown cell will be converted into an Anki card; if type **`int`** then this is the number of markdown cells below this one that you intend to convert (this is useful when you only want to convert a few new cards that you've added).
+    * **`num_cells_below=None`** determines how many markdown cells are written as Anki cards (useful if you've added a few new cards to a notebook which you've already created Anki cards from)
+        * if **`None`** (default) then every single markdown cell in the notebook will be converted into an Anki card
+        * if **`"all"`** then every cell below the one one containing the function you ran is turned into an Anki card
+        * if type **`int`** then this is the number of markdown cells below this one that get turned into Anki cards
 5. Running the cell with **`write=True`** will have created text files, which you can import just like you did in the **Instructions: first use** section.
     * If this cell returns an error, it's probably because one of the cards was incorrectly formatted. Instructions for how to write cards can be found in the section below - this has to be carefully stuck to, because the code is quite brittle.
     * The cards will always be organised into (up to) two text files, regardless of how many cards there are.
@@ -68,6 +71,7 @@ There are two types of cards: **`front-back`** (standard Anki cards, where you f
   * Indenting text turns it into an inline block
 * **Input fields** 
   * Wrap text with **`{{{...}}}`**
+  * Note this doesn't have to be done in a code block (but it works best like this!)
 * **Images**
   * Literally just copy and paste them into markdown cells
   * Make sure each image is on its own line
