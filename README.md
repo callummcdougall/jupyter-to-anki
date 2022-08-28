@@ -63,7 +63,9 @@ Basically all the features this code offers for designing cards should be visibl
 
 Note that this code is quite fragile (since it works by parsing lines of markdown and using string formatting), so if you don't stick to these guidelines then it may well fail to run. For that reason, the simpler you make your cards, the better!
 
-There are two types of cards: **`front-back`** (standard Anki cards, where you flip them over to see extra information) and **`front`** (where the card only has one side, but might have features like spoiler text or input fields. A card is interpreted as front-back if it has a dash **`-`** on one line (which is interpreted as a separator between the front and back of the card).
+There are two types of cards: **`front-back`** (standard Anki cards, where you flip them over to see extra information) and **`front`** (where the card only has one side, but might have features like spoiler text or input fields). A card is interpreted as front-back if it has a dash **`-`** on one line (which is interpreted as a separator between the front and back of the card).
+
+Each line of text (or feature in the list below, e.g. quotebox / codeblock / set of bullet points) should be separated from each other by an empty line.
 
 * **Spoiler text**
   * Wrap text with **`%...%`**
@@ -84,13 +86,10 @@ There are two types of cards: **`front-back`** (standard Anki cards, where you f
   * Note that the items within a list shouldn't have empty lines between them
 * **Hints**
   * These go at the end of the card, separated by a line **`-h`**
+  * Make sure not to mix this up with the front-back separator, which is just a single dash
 * **Other standard markdown**: **`**...**`** for bold text, **`*...*`** or **`_..._`** for italics, **``...``** for inline code font
 
 Every one of these features works for both front-back and front card types, even input fields (since you can have front-back cards which _also_ have input fields on the front).
-
-A couple more notes on card syntax:
-* Each line or block of text (e.g. quotebox or bullet points) should be separated from each other by an empty line
-* Make sure not to mix up front/back separator **`-`** and hint separator **`-h`**
 
 # Some final notes
 
