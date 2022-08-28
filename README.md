@@ -10,7 +10,7 @@ It also gives you the ability to add extra features, for instance:
 
 In particular, I'm pleased with the addition of input fields, which I expect will be useful to a lot of people who are learning new programming languages or libraries. You can mess around in a Jupyter Notebook, and then generate Anki cards from markdown files, like this:
 
-<img src="https://raw.githubusercontent.com/callummcdougall/computational-thread-art/master/example_images/misc/anki-example.png" width=550>
+<img src="https://raw.githubusercontent.com/callummcdougall/computational-thread-art/master/example_images/misc/anki-example.png" width=700>
 
 Most of the features here already exist as Anki add-ons, but I think this will be especially useful to people because I've combined them all into a single way of generating cards, which can be done easily at the same time as you're learning. Also, there are other advantages to using something like Jupyter Notebooks rather than creating cards manually, e.g. the ability to duplicate cards easily and create slightly different versions of them, and the ability to back through your notebook and review your code and the cards you made at the same time.
 
