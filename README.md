@@ -12,7 +12,11 @@ In particular, I'm pleased with the addition of input fields, which I expect wil
 
 <img src="https://raw.githubusercontent.com/callummcdougall/computational-thread-art/master/example_images/misc/anki-example.png" width=850>
 
-Most of the features here already exist as Anki add-ons, but I think this will be especially useful to people because I've combined them all into a single way of generating cards, which can be done easily at the same time as you're learning. Also, there are other advantages to using something like Jupyter Notebooks rather than creating cards manually, e.g. the ability to duplicate cards easily and create slightly different versions of them, and the ability to back through your notebook and review your code and the cards you made at the same time.
+Most of the features here already exist as Anki add-ons, but I think this will be especially useful to people because I've combined them all into a single way of generating cards, which can be done easily at the same time as you're learning. Also, there are other advantages to using something like Jupyter Notebooks rather than creating cards manually, for instance:
+
+* You can duplicate cards easily and create slightly different versions of them
+* You can see all your cards at once before adding them, rather than adding them one at a time
+* You can go back through your notebook and review your cards alongside the rest of the Jupyter Notebook
 
 In the near future, I plan to add the ability to use all these features when actually creating cards in the Anki interface (e.g. input fields, spoiler tags, quotes) because notebooks are less convenient when you want to just create one or two cards.
 
