@@ -32,7 +32,7 @@ Once you've done this, you then need to get [this Anki add-on](https://ankiweb.n
 
 You can choose whichever hotkeys you like. The most important entries are the **`Category`** (left column) and the **`class`** (third column), so make sure these are exactly right.
 
-Once you've done this, you should be able to use these tools in your editor, when you create new cards of the same types as the ones you imported. Here is a link to a video showing how this works for a few of the different buttons.
+Once you've done this, you should be able to use these tools in your editor, when you create new cards of the same types as the ones you imported. [Here is a link](https://midnight-squirrel-8c8.notion.site/Anki-GitHub-a24d3520a02c4bc8bf7ac3165fd9df3f) to a video showing how this works for a few of the different buttons.
 
 # Jupyter
 
