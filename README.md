@@ -24,11 +24,16 @@ You can read more about this on my personal website [here](https://www.perfectly
 
 # Instructions: first use
 
+1. Install the [Anki app](https://apps.ankiweb.net/), and find the **`collections.media`** folder. This is where Anki stores all the images used in your cards. See [this link](https://docs.ankiweb.net/files.html#:~:text=On%20Windows%2C%20the%20latest%20Anki,Anki%20in%20your%20Documents%20folder.) for how to find it (the location depends on your OS).
+2. Install the files from this repo: a Jupyter Notebook, an Anki deck, and a folder of text files.
+3. Open the notebook, and run the first cell.
+4. In the same directory as your notebook, you should see a new python folder:
+
 1. Install the files from this repo. The only two which matter are the Jupyter Notebook **`jupyter_to_anki_template.ipynb`** and the Python file **`jupyter_to_anki.py`**.
 2. Open the notebook and run the first cell **`from jupyter_to_anki import *`**. This should import all the libraries and functions from **`jupyter_to_anki.py`**. If you get an error because one or more of these libraries is not installed, then install them (you can do this from the anaconda prompt, or from this notebook by prepending `!` to your commands, e.g. running **`!from pathlib import Path`** in a cell).
-3. Install the free Anki for PC app [here](https://apps.ankiweb.net/), and login (or sign up). Note that you don't need to study Anki on your PC for this to work, the app is only necessary so you can use it to import cards.
+3. Install the free Anki for PC app , and login (or sign up). Note that you don't need to study Anki on your PC for this to work, the app is only necessary so you can use it to import cards.
 4. The two text files in the GitHub repo are both cards, you need to import them. Do this by pressing **`File -> Import`** in the Anki app, then navigating to that directory, and selecting the Anki package. After this, you should have two new note types (**`front-back`** and **`front`**). You can check this by pressing **`Tools -> Manage Note Types`**. Once you've verified this, you can delete the two new cards you imported.
-5. Find the directory called **`collections.media`**. The instructions for how to find the folder (for Mac, Windows and Linux) are [here](https://docs.ankiweb.net/files.html#:~:text=On%20Windows%2C%20the%20latest%20Anki,Anki%20in%20your%20Documents%20folder.). Once you have the path, copy it, then go into **`jupyter_to_anki.py`** and replace line 14 with **`p_media = Path("[path]")`**. Also, you can replace line 13 by filling in the path you want to write cards to (by default this will be the same folder as the notebook you're writing the cards in).
+5. Find the directory called **`collections.media`**. The instructions for how to find the folder (for Mac, Windows and Linux) are [here](). Once you have the path, copy it, then go into **`jupyter_to_anki.py`** and replace line 14 with **`p_media = Path("[path]")`**. Also, you can replace line 13 by filling in the path you want to write cards to (by default this will be the same folder as the notebook you're writing the cards in).
 6. Run the second cell in the notebook, i.e the one containing **`read_cards(write=True, num_cells_below=2)`**.
 7. Two text files should have appeared in the **`p_write`** directory, called **`one-sided`** and **`two-sided`**. You can import these cards into your Anki app, by following a similar process to the previous import. When prompted to choose import settings (separately each time), you should select the following:
 
