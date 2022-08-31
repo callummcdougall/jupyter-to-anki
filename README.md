@@ -8,7 +8,7 @@ It also gives you the ability to add extra features, for instance:
 * Input fields, which I've found especially useful for learning new programming libraries
 * Cards with hints (you click to reveal the hint)
 
-In particular, I'm pleased with the addition of input fields, which I expect will be useful to a lot of people who are learning new programming languages or libraries. You can mess around in a Jupyter Notebook, and then generate Anki cards from markdown files, like this:
+In particular, I'm pleased with the addition of input fields, which I expect will be useful to a lot of people who are learning new programming languages or libraries. You can mess around in a Jupyter Notebook, and then generate Anki cards from markdown files, like this example (the second cell is markdown, and the Anki card is read from it):
 
 <img src="https://raw.githubusercontent.com/callummcdougall/computational-thread-art/master/example_images/misc/anki-example.png" width=850>
 
