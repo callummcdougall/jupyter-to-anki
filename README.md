@@ -22,14 +22,28 @@ In the near future, I plan to add the ability to use all these features when act
 
 You can read more about this on my personal website [here](https://www.perfectlynormal.co.uk/blog-how-i-use-anki).
 
-# Instructions: before use
+# Anki editor
+
+All the features I've designed should be usable in the Anki editor, without downloading any files from this editor (except for the Anki deck). You'll need to download and install the Anki deck so that the right note types are created in your app. There are only three cards in this deck, and you can delete them after importing them.
+
+Once you've done this, you then need to get [this Anki add-on](https://ankiweb.net/shared/info/1899278645). Once you install it, you should restart the Anki app, then go to **`Tools -> Add-ons`**, select the name of the add on, and click **`Config`**. This will open a large table of entries. Each one corresponds to a formatting option you can apply with a keyboard shortcut (or button on the Anki editor). You can delete every row, then add five new ones, making the table look like this:
+
+![image](https://user-images.githubusercontent.com/45238458/187589685-11039d3b-c098-46f1-bb34-728fb26bd950.png)
+
+You can choose whichever hotkeys you like. The most important entries are the **`Category`** (left column) and the **`class`** (third column), so make sure these are exactly right.
+
+Once you've done this, you should be able to use these tools in your editor, when you create new cards of the same types as the ones you imported. Here is a link to a video showing how this works for a few of the different buttons.
+
+# Jupyter
+
+## Instructions: before use
 
 1. Install the [Anki app](https://apps.ankiweb.net/), and log in.
 2. Find the **`collections.media`** folder. This is where Anki stores all the images used in your cards. See [this link](https://docs.ankiweb.net/files.html#:~:text=On%20Windows%2C%20the%20latest%20Anki,Anki%20in%20your%20Documents%20folder.) for how to find it (the location depends on your OS).
 3. Install the files from this repo: a Jupyter Notebook, a Python file, and a folder of text files.
 4. Open the Python file, and replace line 13 (which defines a path **`p_media`**) by replacing the string argument with the path name of your **`collections.media`** folder. Note - use forward slashes rather than backward slashes (these are interpreted as escape characters).
 
-# Instructions: main
+## Instructions: main
 
 The Jupyter Notebook in the repo should provide a template for how to use this function. The first cell reads:
 
@@ -53,7 +67,7 @@ Note that the function will ignore code cells, and only count markdown cells - t
 
 Card **tags** and **deck** are determined by adding markdown cells starting with **`TAGS = `** or **`DECK = `**. These cells will fix the tags and deck for all markdown cells below them, so you can define more than one different tag or deck within the same notebook. You don't have to define them both in the same markdown cell; you can only change the tag or only change the deck if you want. Multiple tags are supported (separated by spaces), and so are hierarchical tags (indicated by **`::`**).
 
-# Card types
+## Card types
 
 There are three types of cards:
 
@@ -63,7 +77,7 @@ There are three types of cards:
 
 Additionally, any of these types of card can also accept **hints**. They are indicated at the end of the card, by using the **`h`** separator.
 
-# Card syntax
+## Card syntax
 
 The Jupyter Notebook should give you a good idea of what features are available for formatting cards. They are all listed below:
 
