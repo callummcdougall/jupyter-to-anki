@@ -51,7 +51,7 @@ The Jupyter Notebook in the repo should provide a template for how to use this f
 
 Let's explain each of these lines.
 
-The first line is a simple import statement. You'll need to run this import each time you create Anki cards (you can move the Python folder to a directory in your path if that makes it easier).
+The first line is a simple import statement. You'll need to run this import each time you create Anki cards (you can move the Python folder to a directory in your path if that makes it easier). Also, you will probably have to install some libraries before this import statement works (e.g. **`genanki`**). You can do this by running **`!pip install genanki`** in your Jupyter Notebook.
 
 The second line is what actually writes the cards, and it's the only function you'll need to run from the library. The arguments to this function are:
 
