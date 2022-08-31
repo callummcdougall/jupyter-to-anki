@@ -22,65 +22,50 @@ In the near future, I plan to add the ability to use all these features when act
 
 You can read more about this on my personal website [here](https://www.perfectlynormal.co.uk/blog-how-i-use-anki).
 
-# Instructions: first use
+# Instructions: before use
 
-1. Install the [Anki app](https://apps.ankiweb.net/), and find the **`collections.media`** folder. This is where Anki stores all the images used in your cards. See [this link](https://docs.ankiweb.net/files.html#:~:text=On%20Windows%2C%20the%20latest%20Anki,Anki%20in%20your%20Documents%20folder.) for how to find it (the location depends on your OS).
-2. Install the files from this repo: a Jupyter Notebook, an Anki deck, and a folder of text files.
-3. Open the notebook, and run the first cell.
-4. In the same directory as your notebook, you should see a new python folder:
+1. Install the [Anki app](https://apps.ankiweb.net/), and log in.
+2. Find the **`collections.media`** folder. This is where Anki stores all the images used in your cards. See [this link](https://docs.ankiweb.net/files.html#:~:text=On%20Windows%2C%20the%20latest%20Anki,Anki%20in%20your%20Documents%20folder.) for how to find it (the location depends on your OS).
+3. Install the files from this repo: a Jupyter Notebook, a Python file, and a folder of text files.
+4. Open the Python file, and replace line 13 (which defines a path **`p_media`**) by replacing the string argument with the path name of your **`collections.media`** folder. Note - use forward slashes rather than backward slashes (these are interpreted as escape characters).
 
-1. Install the files from this repo. The only two which matter are the Jupyter Notebook **`jupyter_to_anki_template.ipynb`** and the Python file **`jupyter_to_anki.py`**.
-2. Open the notebook and run the first cell **`from jupyter_to_anki import *`**. This should import all the libraries and functions from **`jupyter_to_anki.py`**. If you get an error because one or more of these libraries is not installed, then install them (you can do this from the anaconda prompt, or from this notebook by prepending `!` to your commands, e.g. running **`!from pathlib import Path`** in a cell).
-3. Install the free Anki for PC app , and login (or sign up). Note that you don't need to study Anki on your PC for this to work, the app is only necessary so you can use it to import cards.
-4. The two text files in the GitHub repo are both cards, you need to import them. Do this by pressing **`File -> Import`** in the Anki app, then navigating to that directory, and selecting the Anki package. After this, you should have two new note types (**`front-back`** and **`front`**). You can check this by pressing **`Tools -> Manage Note Types`**. Once you've verified this, you can delete the two new cards you imported.
-5. Find the directory called **`collections.media`**. The instructions for how to find the folder (for Mac, Windows and Linux) are [here](). Once you have the path, copy it, then go into **`jupyter_to_anki.py`** and replace line 14 with **`p_media = Path("[path]")`**. Also, you can replace line 13 by filling in the path you want to write cards to (by default this will be the same folder as the notebook you're writing the cards in).
-6. Run the second cell in the notebook, i.e the one containing **`read_cards(write=True, num_cells_below=2)`**.
-7. Two text files should have appeared in the **`p_write`** directory, called **`one-sided`** and **`two-sided`**. You can import these cards into your Anki app, by following a similar process to the previous import. When prompted to choose import settings (separately each time), you should select the following:
+# Instructions: main
 
-    <img src="https://raw.githubusercontent.com/callummcdougall/computational-thread-art/master/example_images/misc/one-sided-settings.png" width="550"/>
+The Jupyter Notebook in the repo should provide a template for how to use this function. The first cell reads:
 
-    for the one-sided cards, and
+![image](https://user-images.githubusercontent.com/45238458/187583129-d9ac52dc-fe95-4e8c-9d1f-77d0581d4dc2.png)
 
-    <img src="https://raw.githubusercontent.com/callummcdougall/computational-thread-art/master/example_images/misc/two-sided-settings.png" width="550"/>
+Let's explain each of these lines.
 
-    for the two-sided cards. Note that to get **`Fields separated by: Tab`**, you'll have to click on that box and type **`\t`**.
-    
-    (todo - remove "url")
-    
-8. You can preview the cards in the Anki app. If they've worked, then you're ready to start making your own this way!
+The first line is a simple import statement. You'll need to run this import each time you create Anki cards (you can move the Python folder to a directory in your path if that makes it easier).
 
-# Instructions: regular use
+The second line is what actually writes the cards, and it's the only function you'll need to run from the library. The arguments to this function are:
 
-1. Create a new Jupyter Notebook file
-2. Write your Anki cards in Markdown files.
-    * You can see examples of all the supported syntax in the **`jupyter_to_anki_template.ipynb`** file, also you can read the supported syntax in the section below.
-    * You can convert a cell to markdown by pressing escape when you're inside it, then pressing **`M`**. To convert it back into code press **`Y`**
-    * Note that you can use as many code cells as you want, and this won't be a problem when you run the function to create cards
-3. You can optionally specify metadata **TAGS** by adding a markdown cell with the single line **`TAGS = ...`** (see the template notebook for an example). The tags in this cell will apply to every cell _below_ it, until you reach a cell which specifies a new tag.
-4. When you're done, press **`Cells -> All Output -> Clear`** in your Jupyter Notebook, save the notebook, then run the function **`read_cards`** in any of the cells. The important arguments to this function (along with their default values) are:
-    * * **`filename=None`**
-        * You should replace this with the name of whichever file you're running this code from (e.g. it was **`"jupyter_to_anki_template"`** in the example above)
-    * **`write=True`**
-        * If **`True`** then this will write new cards
-        * If `False` then this will just print out information like how many of each card type you have (useful for running final checks before you create cards)
-    * **`num_cells_below=None`**
-        * This determines how many markdown cells are written as Anki cards (useful if you've added a few new cards to a notebook which you've already created Anki cards from)
-        * if **`None`** (default) then every single markdown cell in the notebook will be converted into an Anki card
-        * if **`"all"`** then every cell below the one one containing the function you ran is turned into an Anki card
-        * if type **`int`** then this is the number of markdown cells below this one that get turned into Anki cards
-5. Running the cell with **`write=True`** will have created text files, which you can import just like you did in the **Instructions: first use** section.
-    * If this cell returns an error, it's probably because one of the cards was incorrectly formatted. Instructions for how to write cards can be found in the section below - this has to be carefully stuck to, because the code is quite brittle.
-    * The cards will always be organised into (up to) two text files, regardless of how many cards there are.
+* **`filename`** - you should always pass the filename of the notebook you're running this function in
+* **`write`** - boolean, determining whether to write cards or not (if false then it just prints info about the cards, which can be useful for checking total numbers of cards before actually writing them, or checking if there are any errors)
+* **`num_cells_below`** - this has three possible values. If **`None`** (the default value), then it Ankifies every markdown cell in the notebook. If **`"all"`**, then it Ankifies every markdown cell below the one containing this function. Finally, if it is a positive integer, then that's how many markdown cells below this one are Ankified[^1].
+* **`overwrite`** - if **`True`**, then any Anki decks in the current directory will be overwritten when you run this function. If **`False`** (the default value), then new Anki decks will have suffixes like `_001`, `_002` appended to them so they don't overwrite.
+* **`mode`** - ignore this argument, it should always be zero
+
+What exactly does this function do? Well, it reads in a certain number of markdown cells, converts them to Anki cards, and writes them to a **`.apkg`** file. This file will have the same name as the current notebook, with the deck name appended, plus maybe a suffix like `_001`, `_002` (see point above).
+
+Note that the function will ignore code cells, and only count markdown cells - this means it's easy to open a notebook of code, add some markdown cells in between them and turn them into Anki cards. You can toggle a cell between markdown and code by pressing escape when you're inside the cell (or clicking to the left of the cell), and pressing **`y`** (for code) or **`m`** (for markdown).
+
+Card **tags** and **deck** are determined by adding markdown cells starting with **`TAGS = `** or **`DECK = `**. These cells will fix the tags and deck for all markdown cells below them, so you can define more than one different tag or deck within the same notebook. You don't have to define them both in the same markdown cell; you can only change the tag or only change the deck if you want. Multiple tags are supported (separated by spaces), and so are hierarchical tags (indicated by **`::`**).
+
+# Card types
+
+There are three types of cards:
+
+* **`front-back`** (standard Anki cards, where you flip them over to see extra information). A card is interpreted as **`front-back`** if it has a dash **`-`** on one line (which is interpreted as a separator between the front and back of the card).
+* **`image`** (same as front-back, but when you flip it over you no longer see the front, only the back). A card is interpreted as **`image`** if it has **`-i`** on one line (which is interpreted as a separator between the front and back of the card). This kind of card is useful if you want to occlude certain parts of an image.
+* **`front`** (the card only has one side, but might have features like spoiler text or input fields). This card is useful for programming syntax, or making nice-looking cloze cards (or combining the two!).
+
+Additionally, any of these types of card can also accept **hints**. They are indicated at the end of the card, by using the **`h`** separator.
 
 # Card syntax
 
-Basically all the features this code offers for designing cards should be visible in the **`jupyter_to_anki_template.ipynb`**. They are also listed here for completeness.
-
-Note that this code is quite fragile (since it works by parsing lines of markdown and using string formatting), so if you don't stick to these guidelines then it may well fail to run. For that reason, the simpler you make your cards, the better!
-
-There are two types of cards: **`front-back`** (standard Anki cards, where you flip them over to see extra information) and **`front`** (where the card only has one side, but might have features like spoiler text or input fields). A card is interpreted as front-back if it has a dash **`-`** on one line (which is interpreted as a separator between the front and back of the card).
-
-Each line of text (or feature in the list below, e.g. quotebox / codeblock / set of bullet points) should be separated from each other by an empty line.
+The Jupyter Notebook should give you a good idea of what features are available for formatting cards. They are all listed below:
 
 * **Spoiler text**
   * Wrap text with **`%...%`**
@@ -99,17 +84,18 @@ Each line of text (or feature in the list below, e.g. quotebox / codeblock / set
 * **Bullet points or numbered lists**
   * Normal markdown syntax: use **`*`** or **`1.`** followed by a space
   * Note that the items within a list shouldn't have empty lines between them
-  * Double indentations are not supported yet
+  * Double indentations are not supported
 * **Hints**
   * These go at the end of the card, separated by a line **`-h`**
   * Make sure not to mix this up with the front-back separator, which is just a single dash
 * **Other standard markdown**: **`**...**`** for bold text, **`*...*`** or **`_..._`** for italics, **``...``** for inline code font
 
-Every one of these features works for both front-back and front card types, even input fields (since you can have front-back cards which _also_ have input fields on the front).
+All these features work for all three different card types (with a couple of exceptions for **`image`** cards, e.g. since having input fields for these kinds of cards wouldn't make sense).
 
-# Some final notes
+Each line of text (or feature in the list above, e.g. quotebox / codeblock / set of bullet points) should be separated from each other by an empty line.
 
-* I'll emphasise it once more - this code is quite brittle, and if you don't conform to the card syntax guide above then it probably won't run! If in doubt, just go back to the template notebook in this repo and compare your cards to this.
-* If you run the **`read_cards`** function multiple times, then multiple text files will be created, with names like `front-001.txt`, `front-002.txt`, etc (so you don't overwrite the cards you've already made). This can get confusing, so it's recommended to only generate codes once for each notebook you're working on!
-* Markdown cells which start with headers (i.e. with some number of **`#`** characters) _don't_ get converted into Anki cards. This is because headers are quite useful in notebooks, and I didn't want them to disrupt the function.
-* In theory you can nest things like bullet points inside quotes, but in practice it tends to get a bit messy and confusing so I usually don't do this.
+Note that this code is quite fragile (since it works by parsing lines of markdown and using string formatting), so if you don't stick to these guidelines then it may well break. For that reason, the simpler you make your cards, the better! If in doubt, just go back to the template notebook in this repo and compare your cards to this.
+
+Happy Anki-ing!
+
+[^1]: Markdown cells with meta information (deck and tags) don't get counted in this argument. Additionally, markdown cells that start with headers (i.e. with some number of **`#`** characters) don't get converted into Anki cards and don't get counted in this argument. This is because headers are quite useful in notebooks, and I didn't want them to disrupt the function.
