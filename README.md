@@ -89,7 +89,7 @@ The Jupyter Notebook should give you a good idea of what features are available 
   * Wrap text with **`{{{...}}}`**
   * Note this doesn't have to be done in a code block (but ususally I combine these two)
 * **Images**
-  * Literally just copy and paste them into markdown cells
+  * Markdown cells behave weirdly wrt images
   * Make sure each image is on its own line
 * **Quote boxes**
   * **`(Q)`**, **`(A)`** and **`(E)`** stand for quote, author and end, and they separate the different parts of the quotebox
