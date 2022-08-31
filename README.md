@@ -6,7 +6,7 @@ It also gives you the ability to add extra features, for instance:
 
 * "Spoiler tags", like those found on LessWrong (which reveal when you hover over them)
 * Input fields, which I've found especially useful for learning new programming libraries
-* Cards with hints (click to reveal)
+* Cards with hints (you click to reveal the hint)
 
 In particular, I'm pleased with the addition of input fields, which I expect will be useful to a lot of people who are learning new programming languages or libraries. You can mess around in a Jupyter Notebook, and then generate Anki cards from markdown files, like this:
 
