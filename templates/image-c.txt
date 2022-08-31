@@ -1,0 +1,81 @@
+@import url("_editor_button_styles.css");
+
+/*  CARD  */
+
+
+.card {
+	font-family: Hind Regular;
+	line-height:1.5em;
+	font-size: 20px;
+	text-align: left;
+	color: black;
+	text-shadow: 1px 1px 2px #DDDDDD;
+	margin: 22px;
+}
+
+
+
+/*  CONTENT ALIGNED */
+
+.content_aligned
+{
+	position: absolute;
+	top: 3%;
+	left: 3%;
+	width: 94%;
+	height: 94%;
+}
+
+
+
+/*  HINTS  */
+
+#hint { background: #c5e7fa; border-radius: 5px; opacity:0.7; padding: 0.1em 1.3em; }
+
+#hint.hidden:hover { background: #c9d7ff; cursor: pointer; }
+#hint.hidden .payload { display: none; }
+
+#hint.shown { background: #fff; color: #000; }
+#hint.shown .trigger { display: none; }
+#hint.shown .payload { display: block; }
+
+
+
+/*  CODE  */
+
+.codefont, font[color="#ff5500"] { 
+	font-family: "Lucida Console";
+	background-color: black;
+	text-shadow: none;
+	color: white;
+    font-size: 18px;
+	padding: 3px 2px 3px;
+}
+
+/* QUOTEBOX */
+
+.quotebox {
+	text-align: justify;
+	text-justify: inter-word;
+	padding: 27px 37px; 
+	border-style: solid; 
+	border-width: 8px; 
+	border-color: black;
+}
+.q-desc {
+	text-align: right;
+	font-weight: bold;
+}
+.q-desc-1::before { 
+	content: "—\00a0\00a0";
+}
+.q-desc-2 {
+	color: #666;
+}
+.author {
+	text-align: right;
+	font-weight: bold;
+}
+.author::before {
+	content: "—\00a0\00a0";
+}

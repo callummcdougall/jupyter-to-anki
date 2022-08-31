@@ -1,0 +1,68 @@
+<!-- ===== CARD CONTENT & HINT ===== -->
+
+<div class="content_aligned";>
+
+	{{Front}}
+	<br>
+
+	{{#Hint}}
+		<br>
+		<div id="hint" class="hidden">
+			<p class="trigger">[ click to show hint ]</p>
+			<p class="payload">{{Hint}}</p>
+		</div>
+	{{/Hint}}
+
+	<script>
+    		var hint = document.getElementById('hint');
+    		hint.addEventListener('touchstart', function() { this.setAttribute('class', 'shown'); });
+    		hint.addEventListener('mousedown', function() { this.setAttribute('class', 'shown'); });
+	</script>
+
+</div>
+
+
+
+<!-- ===== QUOTEBOX ===== -->
+
+<script>
+	var quoteColor = "#";
+	for (var i = 0; i < 6; i++) { quoteColor += "CDEF"[Math.floor(Math.random() * 4)]; }
+	Array.from(document.getElementsByClassName("quotebox")).forEach(element => { element.style.backgroundColor = quoteColor }); 
+</script>
+
+
+
+<!-- ===== INPUTS ===== -->
+
+<script>
+	var precontainers = document.querySelectorAll("div.exerciseprecontainer");
+	for (var i = 0; i < precontainers.length; i++) {
+	    if (!(precontainers[i].innerHTML.includes("pre"))) {
+	    	new_html = "<pre>" + precontainers[i].innerHTML + "</pre>";
+			document.querySelectorAll(".exerciseprecontainer")[i].innerHTML = new_html;
+	    }
+	}
+	var inputfields = document.querySelectorAll("span.input_field");
+	for (var i = 0; i < inputfields.length; i++) {
+		var contents = inputfields[i].innerHTML;
+		var idx = 10000000 + i;
+		var new_html = `<input maxlength="${contents.length}" name="${contents}_${idx}" style="width: ${contents.length}ch;">`;
+		document.querySelectorAll("span.input_field")[i].innerHTML = new_html;
+	}
+	var x = new Object();
+	var all = document.getElementsByTagName('input');
+	for (var i = 0; i < all.length; i++) {
+		all[i].addEventListener("input", function() { key=this.name; value=this.value; x[key] = value; });
+	}
+</script>
+
+
+<!-- ===== SPOILERS ===== -->
+
+<script>
+	var all = document.querySelectorAll('.spoiler');
+	for (var i = 0; i < all.length; i++) {
+		all[i].addEventListener('click', function() { this.style.color = "white"; });
+	}
+</script>

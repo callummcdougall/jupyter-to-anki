@@ -1,0 +1,67 @@
+<!-- ===== CARD CONTENT & HINT ===== -->
+
+<div class="content_aligned";>
+
+	{{Front}}
+	<br>
+
+	{{#Hint}}
+		<br>
+		<div id="hint" class="shown">
+			<p class="payload">{{Hint}}</p>
+		</div>
+	{{/Hint}}
+
+	<br>
+
+	<hr style="height:1px;border-width:0;color:gray;background-color:gray">	
+	<hr style="height:1px; visibility:hidden;">
+	{{Back}}
+
+	<br>
+
+</div>
+
+
+
+<!-- ===== INPUTS ===== -->
+
+<script>
+	var precontainers = document.querySelectorAll(".exerciseprecontainer");
+	for (var i = 0; i < precontainers.length; i++) {
+	    if (!(precontainers[i].innerHTML.includes("pre"))) {
+	    	new_html = "<pre>" + precontainers[i].innerHTML + "</pre>";
+			document.querySelectorAll(".exerciseprecontainer")[i].innerHTML = new_html;
+	    }
+	}
+	var inputfields = document.querySelectorAll("span.input_field");
+	for (var i = 0; i < inputfields.length; i++) {
+		var contents = inputfields[i].innerHTML;
+		var idx = 10000000 + i;
+		var new_html = `<input maxlength="${contents.length}" name="${contents}_${idx}" style="width: ${contents.length}ch;">`;
+		document.querySelectorAll("span.input_field")[i].innerHTML = new_html;
+	}
+	var all = document.getElementsByTagName('input');
+	for (var i = 0; i < all.length; i++) {
+		var my_answer = x[all[i].name];
+		var true_answer = all[i].name.slice(0, -9);
+		if(my_answer === true_answer){all[i].style.backgroundColor = 'rgb(124,252,0,1)'}
+		else{all[i].style.backgroundColor = 'rgb(240,128,128,1)'}
+		all[i].value = true_answer;
+		all[i].style.fontWeight = 'bold';
+	}
+</script>
+
+
+
+<!-- ===== QUOTEBOX ===== -->
+
+<script>
+	Array.from(document.getElementsByClassName("quotebox")).forEach(element => { element.style.backgroundColor = quoteColor }); 
+</script>
+
+<!-- ===== SPOILERS ===== -->
+
+<script>
+	document.querySelectorAll('.spoiler').forEach(item => item.style.color = 'white');
+</script>

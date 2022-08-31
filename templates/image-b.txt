@@ -1,0 +1,36 @@
+<!-- ===== CARD CONTENT & HINT ===== -->
+
+<div class="content_aligned";>
+
+	<div id="back_">{{Back}}</div>
+	<div hidden id="front_">{{Front}}</div>
+
+	<script>
+		var front_image = document.getElementById('front_').innerHTML;
+		var back_image = document.getElementById('back_').innerHTML;
+		function set_image_to_front() {this.innerHTML=front_image;};
+		function set_image_to_back() {this.innerHTML=back_image;};
+		document.querySelector("#front_").addEventListener('mousedown', set_image_to_front);
+		document.querySelector("#front_").addEventListener('mouseup', set_image_to_back);
+	</script>
+
+	{{#Hint}}
+		<br>
+		<div id="hint" class="shown">
+			<p class="payload">{{Hint}}</p>
+		</div>
+	{{/Hint}}
+
+</div>
+
+<!-- ===== QUOTEBOX ===== -->
+
+<script>
+	Array.from(document.getElementsByClassName("quotebox")).forEach(element => { element.style.backgroundColor = quoteColor }); 
+</script>
+
+<!-- ===== SPOILERS ===== -->
+
+<script>
+	document.querySelectorAll('.spoiler').forEach(item => item.style.color = 'white');
+</script>
