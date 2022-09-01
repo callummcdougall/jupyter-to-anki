@@ -99,9 +99,9 @@ The Jupyter Notebook should give you a good idea of what features are available 
   * Normal markdown syntax: use **`*`** or **`1.`** followed by a space
   * Note that the items within a list shouldn't have empty lines between them
   * Double indentations are not supported
-* **Hints**
-  * These go at the end of the card, separated by a line **`-h`**
-  * Make sure not to mix this up with the front-back separator, which is just a single dash
+* **LaTeX**
+  * Enclose LaTeX statements with `\(...\)` (rather than the usual dollar signs)
+  * Note - this is also how you get LaTeX on Anki cards
 * **Other standard markdown**: **`**...**`** for bold text, **`*...*`** or **`_..._`** for italics, **``...``** for inline code font
 
 All these features work for all three different card types (with a couple of exceptions for **`image`** cards, e.g. since having input fields for these kinds of cards wouldn't make sense).
