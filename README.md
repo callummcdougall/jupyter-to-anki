@@ -100,7 +100,7 @@ The Jupyter Notebook should give you a good idea of what features are available 
   * Note that the items within a list shouldn't have empty lines between them
   * Double indentations are not supported
 * **LaTeX**
-  * Enclose LaTeX statements with `\(...\)` (rather than the usual dollar signs)
+  * Enclose LaTeX statements with **`\(...\)`** (rather than the usual dollar signs)
   * Note - this is also how you get LaTeX on Anki cards
 * **Other standard markdown**: **`**...**`** for bold text, **`*...*`** or **`_..._`** for italics, **``...``** for inline code font
 
