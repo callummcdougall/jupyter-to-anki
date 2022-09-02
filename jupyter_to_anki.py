@@ -1,5 +1,4 @@
 from __future__ import unicode_literals
-from lib2to3.pgen2.token import OP
 from pathlib import Path
 import re
 from collections import defaultdict
@@ -10,17 +9,22 @@ import hashlib
 from typing import List, Dict, Tuple, Optional, Union
 import traceback
 import genanki
+import hashlib
 
-p_media = Path("C:/Users/calsm/AppData/Roaming/Anki2/User 1/collection.media")
+p_media = Path("")
+assert len(p_media.anchor) > 0, "You need to change `p_media` in the Python file you downloaded. See the GitHub instructions for more."
 
-
+# Generate the dictionary of card templates
 templates_dict = defaultdict(dict)
 for card_type in ["front", "front-back", "image"]:
     for group in ["front", "back", "css"]:
-        with open(f"templates/{card_type}-{group[0]}.txt") as f:
+        with open(Path(__file__).parent / f"templates/{card_type}-{group[0]}.txt", encoding="utf-8") as f:
             templates_dict[card_type][group] = f.read()
 
 ### MISC FUNCTIONS
+
+def encode_str(s):
+    return int(hashlib.sha256(bytes(s, encoding="utf-8")).hexdigest(), 16) % (10 ** 10)
 
 def get_filename_from_json_data(json_data, filetype="jpg"):
     
@@ -32,7 +36,6 @@ def get_random_seed_for_inputs(i_value, increment):
     
     Note that the purpose of "increment" is to make sure the same field showing up twice doesn't lead to the same random seed
     """
-    
     h = hashlib.sha256(bytes(i_value + str(increment), "utf-8")).hexdigest()
     h = "".join([ch for ch in h if ch.isdigit()])
     return f"{int(h[:8]):08d}"
@@ -44,7 +47,6 @@ def get_card_type_and_hint(card) -> Tuple[str, int, int, int]:
     Also figures out whether it's got a hint, based on whether it contains a `-h` separator.
     """
 
-    # note - image cards don't yet work (because annoyingly each jupyter markdown cell can now apparently have a maximum of 1 image, if copied in the normal way)
     all_separators = [c.strip() for c in card if c.strip().startswith("-")]
     assert len(all_separators) <= 2, f"There should be at most separators (lines starting with '-'), instead we found {len(all_separators)} in one of your cards.\n\nSee the documentation pages for more detail:\n\nhttps://github.com/callummcdougall/jupyter-to-anki/blob/main/README.md"
     bad_separators = [sep for sep in all_separators if sep not in ["-", "-h", "-i"]]
@@ -69,7 +71,7 @@ def get_card_type_and_hint(card) -> Tuple[str, int, int, int]:
 ### HIGH-LEVEL FUNCTIONS
 
 def write_cards_to_anki_package(filename:str, filename_write:Optional[str]=None, write:bool=True, 
-num_cells_below:Optional[Union[str, int]]=None, overwrite=False, mode=0):
+num_cells_below:Optional[Union[str, int]]=None, overwrite=False):
     """
     Takes filename of current notebook, and writes all cards in the deck to an anki package (.apkg)
 
@@ -89,8 +91,6 @@ num_cells_below:Optional[Union[str, int]]=None, overwrite=False, mode=0):
         overwrite
             if True, then the newly created cards will overwrite whatever was stored in that `filename_write` Anki deck before
             if False, then they won't overwrite, but will instead have a suffix added to their filename (e.g. "_001")
-        mode
-            TODO - remove the option for mode=1
     """
 
     # Do some type-checking
@@ -99,14 +99,13 @@ num_cells_below:Optional[Union[str, int]]=None, overwrite=False, mode=0):
         n = num_cells_below
         assert any([(type(n) == int) and (n >= 1), n == "any"]), s
 
-    card_dict_by_deck_and_type = read_cards(filename, write, num_cells_below, mode)
+    # Reads card dict: keys are decks, values are dicts. Each of these dicts has keys = card types, values = lists of (card contents, tags)-tuples
+    card_dict_by_deck_and_type = read_cards(filename, write, num_cells_below)
 
     for deck, card_dict_by_type in card_dict_by_deck_and_type.items():
 
         # Generate a hash to uniquely refer to this deck (has to be the same each time you run this function)
-        h_deck = hash(deck)
-        h_deck = max(h_deck, -h_deck)
-        h_deck = int(str(h_deck)[:10])
+        h_deck = encode_str(deck)
         # Create a deck object
         my_deck = genanki.Deck(
             deck_id=h_deck,
@@ -116,13 +115,10 @@ num_cells_below:Optional[Union[str, int]]=None, overwrite=False, mode=0):
         for card_type, card_list in card_dict_by_type.items():
 
             # Generate a hash to uniquely refer to this note type (has to be the same each time you run this function)
-            h_type = hash(card_type)
-            h_type = max(h_type, -h_type)
-            h_type = int(str(h_type)[:10])
+            h_type = encode_str(card_type + "0")
             # Get the correct fields
             fields = [{'name': 'Front'}, {'name': 'Hint'}]
             if card_type in ["front-back", "image"]: fields.insert(1, {'name': 'Back'})
-            if mode == 1: fields.append({'name': 'URL'})
             # Create a model (equivalent to a note type in Anki)
             my_model = genanki.Model(
                 model_id=h_type,
@@ -137,11 +133,11 @@ num_cells_below:Optional[Union[str, int]]=None, overwrite=False, mode=0):
             )
 
             # Write all the Anki cards to this deck
-            for card in card_list:
+            for (fields, tags) in card_list:
                 my_note = genanki.Note(
                     model=my_model,
-                    fields=card[:-1],
-                    tags=card[-1].split(" ")
+                    fields=fields,
+                    tags=tags
                 )
                 my_deck.add_note(my_note)
 
@@ -171,7 +167,7 @@ def match_meta(s):
     return False
 
 
-def read_cards(filename:str, write:bool, num_cells_below:Optional[Union[int, str]], mode:int):
+def read_cards(filename:str, write:bool, num_cells_below:Optional[Union[int, str]]):
     """
     Opens a Jupyter Notebook given by filename, reads all the cards in non-tag markdown cells, and writes them (separated by note type) to a text file
     
@@ -179,7 +175,6 @@ def read_cards(filename:str, write:bool, num_cells_below:Optional[Union[int, str
         filename        | should be name of notebook you're converting to Anki (ideally the current notebook)
         write           | if false, it doesn't write cards to an `.apkg` file (only do True when you're sure you're done with the cards)
         num_cells_below | None => writes every cell (default), "all" => writes all cells below, int => num cells below
-        mode            | 0 => cards without tag displays or urls, 1 => cards with tag displays and urls
     """
 
     # get global error messages (to print at the end)
@@ -248,9 +243,7 @@ def read_cards(filename:str, write:bool, num_cells_below:Optional[Union[int, str
         for deck, card_data in markdown_cells_dict.items():
             for card, images_dict, tags, url in card_data:
                 card_type, card_content = read_single_card(card, images_dict)
-                if mode==1: card_content.append(url)
-                card_content.append(tags)
-                cards_processed_dict[deck][card_type].append(card_content)
+                cards_processed_dict[deck][card_type].append((card_content, tags.split(" ")))
             # if write: print(f"\t{len(markdown_cells_dict[tags])} cards with {deck = }, {tags = }")
         
         # A global error message capture method (for things like potentially bad formatting in the cards, to warn the user about)
@@ -549,6 +542,3 @@ def markdown_to_html_ignoring_codeblock(s: str) -> str:
         s = re.sub(placeholder_string, codeline_content, s)
         
     return s
-
-
-
