@@ -40,7 +40,7 @@ Once you've done this, you should be able to use these tools in your editor, whe
 
 1. Install the [Anki app](https://apps.ankiweb.net/), and log in.
 2. Find the **`collections.media`** folder. This is where Anki stores all the images used in your cards. See [this link](https://docs.ankiweb.net/files.html#:~:text=On%20Windows%2C%20the%20latest%20Anki,Anki%20in%20your%20Documents%20folder.) for how to find it (the location depends on your OS).
-3. Install the files from this repo: a Jupyter Notebook, a Python file, and a folder of text files.
+3. Install the files from this repo: a Jupyter Notebook, a Python file, and folder of text files.
 4. Open the Python file, and replace line 14 (which defines a path **`p_media`**) by replacing the string argument with the path name of your **`collections.media`** folder. Note - use forward slashes rather than backward slashes (these are interpreted as escape characters).
 
 ## Instructions: main
