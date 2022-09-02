@@ -79,3 +79,18 @@
 .author::before {
 	content: "\2014\00a0\00a0";
 }
+
+/*  SPOILERS  */
+
+.spoiler { 
+	font-style: normal;
+	color: black; 
+	text-shadow: none;
+	background-color:black;
+	padding: 0px 5px 0px;
+}
+
+.spoiler:hover {
+	background-color: white; 
+	text-shadow: 1px 1px 2px #DDDDDD;
+}

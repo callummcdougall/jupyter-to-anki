@@ -11,7 +11,7 @@ import traceback
 import genanki
 import hashlib
 
-p_media = Path("")
+p_media = Path("C:/Users/calsm/AppData/Roaming/Anki2/User 1/collection.media")
 assert len(p_media.anchor) > 0, "You need to change `p_media` in the Python file you downloaded. See the GitHub instructions for more."
 
 # Generate the dictionary of card templates

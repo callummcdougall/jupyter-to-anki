@@ -21,42 +21,6 @@
 
 </div>
 
-<!-- ===== TAGS ===== -->
-
-<div id="ctag1" class="tag primary left"></div>
-<a id="tag" href={{URL}}><div id="stag1" class="tag primary right"></div></a>
-<br>
-
-<div id="ctag2" class="tag secondary left"></div>
-<div id="stag2" class="tag secondary right"></div>
-<br>
-
-<div id="ctag3" class="tag tertiary left"></div>
-<div id="stag3" class="tag tertiary right"></div>
-<br>
-
-<div id="ctag4" class="tag quandry left"></div>
-<div id="stag4" class="tag quandry right"></div>
-
-<script>
-	tag_string = "{{Tags}}".split(" ");
-    tag_obj = {};
-    tag_string.forEach(tag => {
-    	tag_list = tag.split("::");
-        switch (tag_list[0]) {
-        		case "src": tag_obj["src"] = tag_list.slice(1); break;
-			case "content": tag_obj["content"] = tag_list.slice(1); break;
-        }
-    })
-    document.querySelector("#ctag1").textContent = tag_obj["content"][0].split("_").join(" ");
-    if (tag_obj["content"][1] !== undefined) { document.querySelector("#ctag2").textContent = tag_obj["content"][1].split("_").join(" "); }
-    if (tag_obj["content"][2] !== undefined) { document.querySelector("#ctag3").textContent = tag_obj["content"][2].split("_").join(" "); }
-	if (tag_obj["content"][3] !== undefined) { document.querySelector("#ctag4").textContent = tag_obj["content"][3].split("_").join(" "); }
-    document.querySelector("#stag1").textContent = tag_obj["src"][0].split("_").join(" ");
-    if (tag_obj["src"][1] !== undefined) { document.querySelector("#stag2").textContent = tag_obj["src"][1].split("_").join(" "); }
-    if (tag_obj["src"][2] !== undefined) { document.querySelector("#stag3").textContent = tag_obj["src"][2].split("_").join(" "); }
-</script>
-
 
 <!-- ===== QUOTEBOX ===== -->
 
